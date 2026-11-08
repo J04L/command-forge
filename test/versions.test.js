@@ -13,6 +13,7 @@ const versions = [
   "design-director.md",
   "design-lean.md",
   "design-hybrid.md",
+  "design-final.md",
 ];
 
 function readVersion(file) {

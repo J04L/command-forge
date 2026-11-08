@@ -9,7 +9,8 @@ Estas versiones no se instalan con el CLI. Son variantes para probar en paralelo
 | **Contract-first** | `design-contract.md` | Máquina de estados con artefactos, presupuesto, gates y evidencia. | Robustez, auditabilidad, que no se salte la verificación. | Más ceremonia y turnos; puede sentirse burocrática. |
 | **Creative-director** | `design-director.md` | Tesis de dirección de arte, matriz de 13 ejes, crítica y scorecard. | Calidad visual, divergencia real, criterio. | Menos énfasis en manifiestos y checks mecánicos. |
 | **Lean / adversarial** | `design-lean.md` | Prompt corto, reglas duras, vertical slices. | Que un agente perezoso no pueda fingir; rapidez. | Menos profundidad y menos artefactos de auditoría. |
-| **Híbrida** | `design-hybrid.md` | Lean como base + método de Director + contrato de Contract. | Equilibrio entre calidad, verificación y coste. | Aún no probada en un experimento real. |
+| **Híbrida** | `design-hybrid.md` | Lean como base + método de Director + contrato de Contract. | Equilibrio entre calidad, verificación y coste. | Probada: mejor técnica, peor rango que Lean. |
+| **Final** | `design-final.md` | Lean + endurecimiento técnico de la híbrida, sin la matriz que redujo el rango. | Mantener el rango de Lean y arreglar sus P0 técnicos. | Pendiente de probar con un brief real. |
 
 Todas comparten:
 

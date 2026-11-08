@@ -18,25 +18,33 @@ probar en paralelo con el mismo proyecto y el mismo brief:
 - `design-director.md` — creative-director: tesis, matriz de ejes, crítica y scorecard.
 - `design-lean.md` — lean/adversarial: prompt corto, guardrails duros y vertical slices.
 - `design-hybrid.md` — híbrida: Lean como base + método de Director + contrato de Contract.
+- `design-final.md` — final: Lean + endurecimiento técnico de la híbrida, sin la matriz que redujo el rango.
 
 No se instalan con el CLI; se copian a `.opencode/commands/design.md` en copias
 aisladas del proyecto. El protocolo completo está en
-[`versions/README.md`](versions/README.md) y los resultados del primer
-experimento en [`docs/experimento-nexo.md`](docs/experimento-nexo.md).
+[`versions/README.md`](versions/README.md) y los resultados en
+[`docs/experimento-nexo.md`](docs/experimento-nexo.md).
 
-### Resultado del primer experimento
+### Resultados de los experimentos
 
 Se probaron las tres versiones en paralelo sobre el mismo proyecto (Nexo) y el
 mismo brief:
 
 | Versión | Diseño (ciego) | Técnica (ciega) | Veredicto |
 | --- | ---: | ---: | --- |
-| Lean / adversarial | **4,56 / 5** | **90,7 / 100** | Ganadora como base |
+| Lean / adversarial | **4,56 / 5** | **90,7 / 100** | Ganadora en la primera ronda |
 | Contract-first | 4,54 / 5 | 81,5 / 100 | Cerca en diseño, más deuda técnica |
 | Creative-director | 4,26 / 5 | 86,8 / 100 | Mayor divergencia, peor sistema |
 
-La **híbrida** recoge lo mejor de las tres y corrige los fallos concretos que
-detectaron los evaluadores.
+En una segunda ronda se comparó la híbrida contra Lean:
+
+| Versión | Diseño (ciego) | Técnica (ciega) | Veredicto |
+| --- | ---: | ---: | --- |
+| Lean | **87,5 / 100** | 76 / 100 | Mejor rango, deuda técnica |
+| Híbrida | 84,6 / 100 | **88 / 100** | Mejor técnica, menos rango |
+
+La **final** parte de Lean para conservar el rango y le añade el endurecimiento
+técnico de la híbrida. Está pendiente de probar con otro brief.
 
 ## Instalación rápida
 

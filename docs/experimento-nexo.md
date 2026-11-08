@@ -71,36 +71,58 @@ tocaron el proyecto real. Lean produjo muchos más artefactos de verificación
 prompt no redujo el trabajo del agente, pero sí eliminó el `plan.md` y parte de
 la ceremonia.
 
-## Decisión
+## Segunda ronda: Lean vs híbrida
 
-**Base: Lean / adversarial.** Ganó en las dos evaluaciones ciegas. Se le
-injertan:
+Se construyó una híbrida (`versions/design-hybrid.md`) con Lean como base, el
+método de Director y el contrato de Contract. Se probó con el mismo Nexo y se
+comparó a ciegas contra Lean (P = híbrida, Q = Lean).
 
-1. **De Creative-director:** tesis falsables, postura de marca, matriz de ejes,
-   puerta de divergencia, crítica visual P0/P1 y scorecard.
-2. **De Contract-first:** contrato de artefactos, `report.md`
-   `PASS/FAIL/NO VERIFICADO`, presupuesto explícito y verificación mecánica.
+| Criterio | Híbrida (P) | Lean (Q) |
+| --- | ---: | ---: |
+| Diseño ciego | 84,6 / 100 | **87,5 / 100** |
+| Técnica ciega | **88 / 100** | 76 / 100 |
 
-La versión resultante es `versions/design-hybrid.md`.
+- **Diseño:** Lean gana por rango real entre A/B/C y por Q·a como mejor página
+  individual. La híbrida tiene mejor disciplina de marca y mejor móvil, pero sus
+  tres direcciones se sienten más “un sistema con variantes”; además B tiene el
+  grid invertido (rail auxiliar más ancho que el contenido) y C es una carta
+  demasiado estrecha para una landing.
+- **Técnica:** la híbrida gana por `required`/`aria-required`, enlaces legales
+  honestos, foco ≥3:1 en superficies oscuras y `prefers-contrast`. Lean falla en
+  los tres formularios, usa `href="#"` en los legales y tiene el foco del CTA Pro
+  a 1:1.
 
-## Correcciones incorporadas a la híbrida
+## Decisión final
 
-Los evaluadores detectaron fallos concretos que la híbrida exige comprobar:
+**Base: Lean + endurecimiento técnico**, no la híbrida completa. Lean produce el
+mejor diseño y el mejor rango; la híbrida demuestra qué controles técnicos hay
+que añadir. La versión resultante es `versions/design-final.md`.
 
-- anillo de foco con ≥3:1 contra su superficie real (header, precios, cita,
-  formulario y footer);
+Se incorporan de la híbrida:
+
 - `required`/`aria-required` y devolución del foco al campo inválido;
+- anillo de foco con ≥3:1 contra la superficie real (header, precios, cita,
+  formulario y footer);
+- enlaces legales reales o `aria-disabled`, nunca `href="#"` ni `#producto`;
 - nav móvil sin ocultar sin sustituto;
 - `<dl>` válido (sin `<span>`/`<p>` sueltos dentro de los `<div>`);
-- sticky con `scroll-margin-top` y sin tapar contenido; capturas a scroll 0 o
-  con sticky desactivado;
-- enlaces legales reales o `aria-disabled`, nunca a `#producto`;
+- sticky con `scroll-margin-top` y sin tapar contenido; capturas a scroll 0 o con
+  sticky desactivado;
 - `step` coherente en inputs numéricos;
 - tabla ancha en móvil con pista visible y región enfocable;
-- CTA principal que se lea como acción, no como *outline*;
-- display mono con tracking que no rompa palabras.
+- `prefers-contrast` y regiones live bien montadas.
+
+Y se añaden tres reglas de rango que la híbrida no protegió:
+
+- las tres voces tipográficas deben ser distintas (serif / sans / mono o
+  equivalente); dos direcciones con la misma familia y rol no cuentan;
+- cada dirección debe incluir un artefacto de producto o prueba en el primer
+  scroll; una carta editorial sin producto no es una landing;
+- sanity de layout: la columna principal no puede ser más estrecha que una
+  auxiliar; el rail va a 280-320 px, no al revés. Fechas y trimestres deben ser
+  coherentes entre secciones.
 
 ## Siguiente paso
 
-Probar la híbrida con otro brief y, si mantiene la calidad, promoverla a
-`commands/design.md` como versión estable.
+Probar `design-final.md` con otro brief y, si mantiene el rango de Lean y los
+checks de la híbrida, promoverla a `commands/design.md` como versión estable.
