@@ -1,4 +1,4 @@
-# opencode-commands
+# command-forge
 
 Comandos reutilizables para [OpenCode](https://opencode.ai). Instálalos en
 cualquier proyecto con `npx`, sin copiar y pegar prompts a mano.
@@ -14,7 +14,7 @@ cualquier proyecto con `npx`, sin copiar y pegar prompts a mano.
 En la raíz del proyecto:
 
 ```bash
-npx opencode-commands add design
+npx command-forge add design
 ```
 
 Esto crea `.opencode/commands/design.md`. OpenCode detecta el archivo
@@ -26,14 +26,14 @@ automáticamente y lo expone como `/design`; no hace falta reiniciar.
 Para tenerlo en todos tus proyectos:
 
 ```bash
-npx opencode-commands add design --global
+npx command-forge add design --global
 ```
 
 Si todavía no has publicado el paquete en npm, puedes instalarlo directamente
 desde GitHub:
 
 ```bash
-npx github:J04L/opencode-commands add design
+npx github:J04L/command-forge add design
 ```
 
 > `npx` descarga el paquete en una caché temporal y ejecuta su CLI. En CI o
@@ -101,7 +101,7 @@ No es obligatorio: `/design` funciona sin skills, pero las aprovecha si existen.
 ## CLI
 
 ```text
-npx opencode-commands <comando> [opciones]
+npx command-forge <comando> [opciones]
 ```
 
 | Comando | Descripción |
@@ -125,12 +125,12 @@ npx opencode-commands <comando> [opciones]
 Ejemplos:
 
 ```bash
-npx opencode-commands list
-npx opencode-commands add design
-npx opencode-commands add design --global
-npx opencode-commands add --all --force
-npx opencode-commands remove design
-npx opencode-commands add design --dry-run
+npx command-forge list
+npx command-forge add design
+npx command-forge add design --global
+npx command-forge add --all --force
+npx command-forge remove design
+npx command-forge add design --dry-run
 ```
 
 ## Requisitos
@@ -145,8 +145,8 @@ npx opencode-commands add design --dry-run
 ## Desarrollo
 
 ```bash
-git clone https://github.com/J04L/opencode-commands.git
-cd opencode-commands
+git clone https://github.com/J04L/command-forge.git
+cd command-forge
 npm test
 node bin/cli.js list
 npm pack --dry-run
@@ -156,7 +156,7 @@ Para probar el instalador contra un proyecto temporal:
 
 ```bash
 mkdir -p /tmp/mi-proyecto && cd /tmp/mi-proyecto
-node /ruta/a/opencode-commands/bin/cli.js add design
+node /ruta/a/command-forge/bin/cli.js add design
 ```
 
 ## Publicación y distribución
@@ -164,9 +164,9 @@ node /ruta/a/opencode-commands/bin/cli.js add design
 Hay dos formas implementadas y una tercera opcional:
 
 1. **npm + npx** (recomendada): `npm publish --access public`, y tus usuarios
-   ejecutan `npx opencode-commands add design`.
+   ejecutan `npx command-forge add design`.
 2. **GitHub + npx**, sin publicar en npm:
-   `npx github:J04L/opencode-commands add design`.
+   `npx github:J04L/command-forge add design`.
 3. **Instalador `curl`** (opcional, no incluido todavía) si algún día quieres
    una experiencia sin Node.
 

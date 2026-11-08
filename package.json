@@ -1,10 +1,10 @@
 {
-  "name": "opencode-commands",
+  "name": "command-forge",
   "version": "0.1.0",
   "description": "Comandos reutilizables para OpenCode y otros harness de agentes. Instálalos con npx.",
   "type": "module",
   "bin": {
-    "opencode-commands": "bin/cli.js"
+    "command-forge": "bin/cli.js"
   },
   "files": [
     "bin",
@@ -34,10 +34,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/J04L/opencode-commands.git"
+    "url": "git+https://github.com/J04L/command-forge.git"
   },
-  "homepage": "https://github.com/J04L/opencode-commands#readme",
+  "homepage": "https://github.com/J04L/command-forge#readme",
   "bugs": {
-    "url": "https://github.com/J04L/opencode-commands/issues"
+    "url": "https://github.com/J04L/command-forge/issues"
   }
 }

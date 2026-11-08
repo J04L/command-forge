@@ -56,7 +56,7 @@ test("list --json devuelve datos parseables", () => {
 
   assert.equal(result.status, 0);
   const data = JSON.parse(result.stdout);
-  assert.equal(data.name, "opencode-commands");
+  assert.equal(data.name, "command-forge");
   assert.equal(data.commands[0].name, "design");
   assert.ok(data.commands[0].description.length > 10);
 });
@@ -187,7 +187,7 @@ test("help y version funcionan", () => {
   const help = run(["help"], workspace);
   assert.equal(help.status, 0);
   assert.match(help.stdout, /Uso:/);
-  assert.match(help.stdout, /npx github:J04L\/opencode-commands/);
+  assert.match(help.stdout, /npx github:J04L\/command-forge/);
 
   const version = run(["--version"], workspace);
   assert.equal(version.status, 0);

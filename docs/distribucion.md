@@ -3,7 +3,7 @@
 Este documento explica cómo pasar de un repositorio local a:
 
 ```bash
-npx opencode-commands add design
+npx command-forge add design
 ```
 
 en cualquier proyecto, sin copiar archivos a mano.
@@ -12,8 +12,8 @@ en cualquier proyecto, sin copiar archivos a mano.
 
 | Opción | Comando para el usuario | Cuándo usarla |
 | --- | --- | --- |
-| npm + npx | `npx opencode-commands add design` | Distribución pública, versiones y actualizaciones sencillas. |
-| GitHub + npx | `npx github:J04L/opencode-commands add design` | Antes de publicar en npm o para un repo privado. |
+| npm + npx | `npx command-forge add design` | Distribución pública, versiones y actualizaciones sencillas. |
+| GitHub + npx | `npx github:J04L/command-forge add design` | Antes de publicar en npm o para un repo privado. |
 | Instalador `curl` | `curl -fsSL ... \| bash` | Si quieres una experiencia sin Node, como hacen algunos plugins. |
 
 ## Por qué no vale `npx skills add`
@@ -39,7 +39,7 @@ correcta. Eso es exactamente lo que hace este proyecto.
 ### 1. Comprueba el nombre
 
 ```bash
-npm view opencode-commands version
+npm view command-forge version
 ```
 
 Si devuelve 404, el nombre está libre. Si ya está ocupado, usa un scope:
@@ -57,7 +57,7 @@ npm publish --access public
 En ese caso el comando para tus usuarios sería:
 
 ```bash
-npx @tu-usuario/opencode-commands add design
+npx @tu-usuario/command-forge add design
 ```
 
 ### 2. Inicia sesión y publica
@@ -78,9 +78,9 @@ npm pack --dry-run
 ### 3. Verifica
 
 ```bash
-npm view opencode-commands version
-npx -y opencode-commands@latest list
-npx -y opencode-commands@latest add design --dry-run
+npm view command-forge version
+npx -y command-forge@latest list
+npx -y command-forge@latest add design --dry-run
 ```
 
 ### 4. Publica una versión nueva
@@ -94,7 +94,7 @@ npm publish --access public
 Los usuarios actualizan con:
 
 ```bash
-npx opencode-commands@latest add design --force
+npx command-forge@latest add design --force
 ```
 
 `--force` es necesario si el comando local ya existe y es distinto; si es
@@ -105,14 +105,14 @@ idéntico, el CLI lo detecta y no lo toca.
 No necesitas publicar en npm. `npx` acepta especificaciones de git:
 
 ```bash
-npx github:J04L/opencode-commands add design
+npx github:J04L/command-forge add design
 ```
 
 También puedes fijar una rama, un tag o un commit:
 
 ```bash
-npx github:J04L/opencode-commands#v0.1.0 add design
-npx github:J04L/opencode-commands#main add design
+npx github:J04L/command-forge#v0.1.0 add design
+npx github:J04L/command-forge#main add design
 ```
 
 Para un repositorio privado, `npx` usa tus credenciales de git (SSH o HTTPS).
@@ -136,7 +136,7 @@ Inconvenientes:
 Si quieres una experiencia tipo:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/J04L/opencode-commands/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/J04L/command-forge/main/install.sh | bash
 ```
 
 puedes añadir un `install.sh` que descargue los `.md` y los copie a
@@ -151,12 +151,12 @@ lo añades, documenta siempre las opciones `--global`, `--force` y `--dry-run`.
 ```json
 {
   "bin": {
-    "opencode-commands": "bin/cli.js"
+    "command-forge": "bin/cli.js"
   }
 }
 ```
 
-Cuando alguien ejecuta `npx opencode-commands add design`:
+Cuando alguien ejecuta `npx command-forge add design`:
 
 1. npm descarga el paquete (o lo reutiliza de su caché).
 2. npm ejecuta `bin/cli.js` con el argumento `add design`.
@@ -184,7 +184,7 @@ configurar el repositorio como trusted publisher en npmjs.com.
 - [ ] `npm pack --dry-run` incluye `bin/`, `commands/` y la documentación.
 - [ ] `node bin/cli.js list` muestra el comando.
 - [ ] `node bin/cli.js add design --dry-run` funciona en un proyecto temporal.
-- [ ] `npx -y opencode-commands@latest list` funciona tras publicar.
+- [ ] `npx -y command-forge@latest list` funciona tras publicar.
 - [ ] El README explica instalación global, proyecto y GitHub.
 - [ ] Hay una versión (`v0.1.0`) y un release en GitHub.
 - [ ] `LICENSE` y `repository` están correctos en `package.json`.
