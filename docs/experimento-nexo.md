@@ -124,5 +124,6 @@ Y se añaden tres reglas de rango que la híbrida no protegió:
 
 ## Siguiente paso
 
-Probar `design-final.md` con otro brief y, si mantiene el rango de Lean y los
-checks de la híbrida, promoverla a `commands/design.md` como versión estable.
+`design-final.md` se ha promovido a `commands/design.md` como versión estable.
+Queda pendiente validarla con un segundo brief para comprobar que no está
+sobreajustada a Nexo.
