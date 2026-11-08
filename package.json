@@ -1,0 +1,42 @@
+{
+  "name": "opencode-commands",
+  "version": "0.1.0",
+  "description": "Comandos reutilizables para OpenCode y otros harness de agentes. Instálalos con npx.",
+  "type": "module",
+  "bin": {
+    "opencode-commands": "bin/cli.js"
+  },
+  "files": [
+    "bin",
+    "commands",
+    "docs",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test",
+    "list": "node bin/cli.js list",
+    "pack:check": "npm pack --dry-run"
+  },
+  "keywords": [
+    "opencode",
+    "commands",
+    "ai-agents",
+    "agent-skills",
+    "web-design",
+    "cli",
+    "npx"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/J04L/opencode-commands.git"
+  },
+  "homepage": "https://github.com/J04L/opencode-commands#readme",
+  "bugs": {
+    "url": "https://github.com/J04L/opencode-commands/issues"
+  }
+}

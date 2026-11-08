@@ -1,0 +1,193 @@
+# opencode-commands
+
+Comandos reutilizables para [OpenCode](https://opencode.ai). Instálalos en
+cualquier proyecto con `npx`, sin copiar y pegar prompts a mano.
+
+## Comandos
+
+| Comando | Qué hace |
+| --- | --- |
+| `/design <brief>` | Explora **3 direcciones de diseño web (A/B/C)** para un brief, las construye en un laboratorio aislado, las verifica en el navegador y las compara antes de tocar el proyecto real. |
+
+## Instalación rápida
+
+En la raíz del proyecto:
+
+```bash
+npx opencode-commands add design
+```
+
+Esto crea `.opencode/commands/design.md`. OpenCode detecta el archivo
+automáticamente y lo expone como `/design`; no hace falta reiniciar.
+
+> Este comando funciona cuando el paquete está publicado en npm. Mientras
+> tanto, usa la variante de GitHub que aparece más abajo.
+
+Para tenerlo en todos tus proyectos:
+
+```bash
+npx opencode-commands add design --global
+```
+
+Si todavía no has publicado el paquete en npm, puedes instalarlo directamente
+desde GitHub:
+
+```bash
+npx github:J04L/opencode-commands add design
+```
+
+> `npx` descarga el paquete en una caché temporal y ejecuta su CLI. En CI o
+> scripts usa `npx -y ...` para aceptar la instalación.
+
+## Uso
+
+```text
+/design landing para una app de finanzas personales para gente de 25-40 años, tono cercano y premium
+```
+
+El comando sigue este flujo:
+
+1. **Encuadra el brief.** Si falta información, hace como máximo 3 preguntas.
+2. **Descubre skills de diseño.** Busca en las rutas de skills de OpenCode,
+   Claude y Agents, detecta las relevantes y las carga con la herramienta
+   `skill`. Si no hay ninguna, lo dice y ofrece instalar una con permiso.
+3. **Prepara un laboratorio aislado.** Crea `.design-lab/runs/<fecha>-<slug>/`
+   si no existe. Nunca modifica la app real durante la exploración.
+4. **Diseña A/B/C.** Tres direcciones que se diferencian en al menos 4 ejes
+   (tipografía, color, densidad, layout, imagen, movimiento...), no tres
+   variaciones de color del mismo diseño.
+5. **Verifica.** Levanta un servidor local, abre las variantes, revisa consola,
+   responsive, accesibilidad y estados, y guarda capturas en `shots/`.
+6. **Presenta y decide.** Tabla comparativa, enlaces, recomendación razonada y
+   una pregunta: ¿A, B, C o una mezcla?
+
+### El laboratorio
+
+El comando trabaja siempre dentro de un entorno de pruebas:
+
+```text
+.design-lab/
+├── README.md
+└── runs/2026-11-08-landing-finanzas/
+    ├── index.html            # comparador A/B/C
+    ├── a/index.html
+    ├── b/index.html
+    ├── c/index.html
+    ├── shared/               # tokens, copy y assets compartidos
+    └── shots/                # capturas de verificación
+```
+
+- Si el laboratorio ya existe, añade una run nueva; no borra las anteriores.
+- Si el proyecto es un repo git, añade `.design-lab/` a `.git/info/exclude`
+  (ignorado local) sin tocar el `.gitignore` del proyecto.
+- El servidor por defecto es `python3 -m http.server 4173 --directory .design-lab`,
+  pero el agente puede usar otro que ya esté disponible.
+- Solo cuando eliges una variante, el agente la integra en el proyecto real.
+
+## Skills de diseño recomendadas
+
+El comando descubre las skills que ya tengas instaladas. Si quieres mejorar el
+punto de partida, puedes instalar alguna de estas:
+
+```bash
+npx skills add anthropics/skills --skill frontend-design
+npx skills add vercel-labs/agent-skills --skill web-design-guidelines
+npx skills add pbakaus/impeccable --skill critique
+npx skills add emilkowalski/skill --skill emil-design-eng
+```
+
+No es obligatorio: `/design` funciona sin skills, pero las aprovecha si existen.
+
+## CLI
+
+```text
+npx opencode-commands <comando> [opciones]
+```
+
+| Comando | Descripción |
+| --- | --- |
+| `list`, `ls` | Lista los comandos del paquete. |
+| `add <nombre...>`, `install` | Instala comandos en `.opencode/commands/`. |
+| `remove <nombre...>`, `rm` | Elimina comandos instalados. |
+| `help` | Muestra la ayuda. |
+
+| Opción | Descripción |
+| --- | --- |
+| `-g, --global` | Usa `~/.config/opencode/commands` (o `$XDG_CONFIG_HOME`). |
+| `-d, --dir <ruta>` | Directorio de destino personalizado. |
+| `-f, --force` | Sobrescribe comandos existentes. |
+| `--all` | Aplica a todos los comandos del paquete. |
+| `--dry-run` | Muestra qué haría sin escribir nada. |
+| `--json` | Salida JSON para `list`. |
+| `-h, --help` | Ayuda. |
+| `-v, --version` | Versión. |
+
+Ejemplos:
+
+```bash
+npx opencode-commands list
+npx opencode-commands add design
+npx opencode-commands add design --global
+npx opencode-commands add --all --force
+npx opencode-commands remove design
+npx opencode-commands add design --dry-run
+```
+
+## Requisitos
+
+- Node.js 18 o superior.
+- OpenCode.
+- Python 3 (opcional) para el servidor estático del laboratorio; el agente puede
+  usar cualquier servidor que ya tengas.
+- Una herramienta de navegador (opcional pero recomendada) para verificar y
+  capturar las variantes.
+
+## Desarrollo
+
+```bash
+git clone https://github.com/J04L/opencode-commands.git
+cd opencode-commands
+npm test
+node bin/cli.js list
+npm pack --dry-run
+```
+
+Para probar el instalador contra un proyecto temporal:
+
+```bash
+mkdir -p /tmp/mi-proyecto && cd /tmp/mi-proyecto
+node /ruta/a/opencode-commands/bin/cli.js add design
+```
+
+## Publicación y distribución
+
+El paquete se puede distribuir de tres formas:
+
+1. **npm + npx** (recomendada): `npm publish --access public`, y tus usuarios
+   ejecutan `npx opencode-commands add design`.
+2. **GitHub + npx**, sin publicar en npm:
+   `npx github:J04L/opencode-commands add design`.
+3. **Instalador `curl`** si algún día quieres una experiencia sin Node.
+
+El CLI de `skills` (`npx skills add`) solo instala `SKILL.md`; no instala
+comandos. Un plugin de OpenCode tampoco registra comandos automáticamente, así
+que un pequeño CLI con `bin` es la forma fiable de hacerlo.
+
+Tienes los detalles, el checklist de publicación y las alternativas en
+[`docs/distribucion.md`](docs/distribucion.md).
+
+## Estructura
+
+```text
+.
+├── bin/cli.js              # instalador npx
+├── commands/design.md      # comando /design
+├── docs/distribucion.md    # cómo publicarlo y distribuirlo
+├── test/cli.test.js        # tests del instalador
+├── package.json
+└── README.md
+```
+
+## Licencia
+
+MIT. Consulta [LICENSE](LICENSE).
