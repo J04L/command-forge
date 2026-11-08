@@ -28,6 +28,7 @@
     "npx"
   ],
   "license": "MIT",
+  "author": "Joel (J04L)",
   "engines": {
     "node": ">=18"
   },

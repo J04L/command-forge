@@ -161,13 +161,14 @@ node /ruta/a/opencode-commands/bin/cli.js add design
 
 ## Publicación y distribución
 
-El paquete se puede distribuir de tres formas:
+Hay dos formas implementadas y una tercera opcional:
 
 1. **npm + npx** (recomendada): `npm publish --access public`, y tus usuarios
    ejecutan `npx opencode-commands add design`.
 2. **GitHub + npx**, sin publicar en npm:
    `npx github:J04L/opencode-commands add design`.
-3. **Instalador `curl`** si algún día quieres una experiencia sin Node.
+3. **Instalador `curl`** (opcional, no incluido todavía) si algún día quieres
+   una experiencia sin Node.
 
 El CLI de `skills` (`npx skills add`) solo instala `SKILL.md`; no instala
 comandos. Un plugin de OpenCode tampoco registra comandos automáticamente, así

@@ -44,7 +44,7 @@ Todo el trabajo visual ocurre en un entorno de pruebas aislado. **Nunca** edites
 - Si no existe, crea `.design-lab/` en la raíz del proyecto.
 - Crea una carpeta por ejecución: `.design-lab/runs/<YYYY-MM-DD>-<slug>/`.
 - Si `.design-lab/` ya existe, reutilízalo y añade una run nueva. No borres runs anteriores.
-- Si el proyecto es un repo git y `.design-lab/` no está ignorado, añade `.design-lab/` a `.git/info/exclude` (local). No toques el `.gitignore` del proyecto.
+- Si el proyecto es un repo git y `.design-lab/` no está ignorado, añade `.design-lab/` al archivo `info/exclude` local (localízalo con `git rev-parse --git-path info/exclude`). No toques el `.gitignore` del proyecto.
 - Estructura mínima:
 
   ```text
