@@ -1,5 +1,6 @@
 ---
 description: Diseña 3 direcciones web (A/B/C) para un brief, en un laboratorio aislado y comparable
+agent: build
 ---
 
 Actúa como director de arte y desarrollador front-end senior. Tu misión es explorar **tres direcciones de diseño web distintas** para el brief de abajo, construirlas y compararlas antes de tocar el proyecto real.
@@ -31,10 +32,11 @@ Si no hay ninguna skill de diseño:
 - Dilo explícitamente.
 - Sigue con la checklist de este comando.
 - Ofrece instalar una o dos, pidiendo permiso antes de ejecutar nada:
-  - `npx skills add anthropics/skills --skill frontend-design`
-  - `npx skills add vercel-labs/agent-skills --skill web-design-guidelines`
-  - `npx skills add pbakaus/impeccable --skill critique`
-  - `npx skills add emilkowalski/skill --skill emil-design-eng`
+  - `npx -y skills add anthropics/skills --skill frontend-design -a opencode`
+  - `npx -y skills add vercel-labs/agent-skills --skill web-design-guidelines -a opencode`
+  - `npx -y skills add pbakaus/impeccable --skill impeccable -a opencode`
+  - `npx -y skills add emilkowalski/skill --skill emil-design-eng -a opencode`
+- `critique` es un comando interno de la skill `impeccable`, no un ID de skill.
 - No instales nada sin confirmación.
 
 ## 2. Prepara el laboratorio (regla dura)
@@ -42,7 +44,7 @@ Si no hay ninguna skill de diseño:
 Todo el trabajo visual ocurre en un entorno de pruebas aislado. **Nunca** edites la app real, sus componentes, estilos o configuración durante la exploración.
 
 - Si no existe, crea `.design-lab/` en la raíz del proyecto.
-- Crea una carpeta por ejecución: `.design-lab/runs/<YYYY-MM-DD>-<slug>/`.
+- Crea una carpeta por ejecución: `.design-lab/runs/<YYYY-MM-DD-HHMM>-<slug>/`. Si ya existe, añade `-2`, `-3`… Nunca reutilices ni borres una run.
 - Si `.design-lab/` ya existe, reutilízalo y añade una run nueva. No borres runs anteriores.
 - Si el proyecto es un repo git y `.design-lab/` no está ignorado, añade `.design-lab/` al archivo `info/exclude` local (localízalo con `git rev-parse --git-path info/exclude`). No toques el `.gitignore` del proyecto.
 - Estructura mínima:
@@ -55,13 +57,13 @@ Todo el trabajo visual ocurre en un entorno de pruebas aislado. **Nunca** edites
       ├── a/index.html
       ├── b/index.html
       ├── c/index.html
-      ├── shared/               # tokens, copy, datos y assets compartidos
+      ├── shared/               # copy, datos y assets; los tokens visuales son por variante
       └── shots/                # capturas de verificación
   ```
 
 - Las tres variantes deben usar **el mismo contenido** (copy, datos, assets) para que la comparación sea justa.
 - Autocontenido y sin build: HTML/CSS/JS estático. Si el brief exige el stack del proyecto (React, Vue, etc.), monta el laboratorio dentro de `.design-lab/` con su propio `package.json`; no instales dependencias en el proyecto anfitrión.
-- Levanta un servidor local: `python3 -m http.server 4173 --directory .design-lab` (o equivalente ya disponible). Si el puerto está ocupado, usa otro y anota la URL. Comprueba que responde antes de continuar.
+- Levanta un servidor local en segundo plano: `python3 -m http.server 4173 --bind 127.0.0.1 --directory .design-lab` (o equivalente ya disponible). Si el puerto está ocupado, usa otro libre y anota la URL real. Comprueba que responde antes de continuar y guarda el PID.
 
 ## 3. Define los ejes y las tres direcciones
 

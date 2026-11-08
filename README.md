@@ -9,6 +9,19 @@ cualquier proyecto con `npx`, sin copiar y pegar prompts a mano.
 | --- | --- |
 | `/design <brief>` | Explora **3 direcciones de diseño web (A/B/C)** para un brief, las construye en un laboratorio aislado, las verifica en el navegador y las compara antes de tocar el proyecto real. |
 
+## Versiones en experimentación
+
+La versión estable es `commands/design.md`. En `versions/` hay tres variantes para
+probar en paralelo con el mismo proyecto y el mismo brief:
+
+- `design-contract.md` — contract-first: artefactos, presupuesto, gates y evidencia.
+- `design-director.md` — creative-director: tesis, matriz de ejes, crítica y scorecard.
+- `design-lean.md` — lean/adversarial: prompt corto, guardrails duros y vertical slices.
+
+No se instalan con el CLI; se copian a `.opencode/commands/design.md` en copias
+aisladas del proyecto. El protocolo completo está en
+[`versions/README.md`](versions/README.md).
+
 ## Instalación rápida
 
 En la raíz del proyecto:
