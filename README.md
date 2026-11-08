@@ -17,10 +17,26 @@ probar en paralelo con el mismo proyecto y el mismo brief:
 - `design-contract.md` — contract-first: artefactos, presupuesto, gates y evidencia.
 - `design-director.md` — creative-director: tesis, matriz de ejes, crítica y scorecard.
 - `design-lean.md` — lean/adversarial: prompt corto, guardrails duros y vertical slices.
+- `design-hybrid.md` — híbrida: Lean como base + método de Director + contrato de Contract.
 
 No se instalan con el CLI; se copian a `.opencode/commands/design.md` en copias
 aisladas del proyecto. El protocolo completo está en
-[`versions/README.md`](versions/README.md).
+[`versions/README.md`](versions/README.md) y los resultados del primer
+experimento en [`docs/experimento-nexo.md`](docs/experimento-nexo.md).
+
+### Resultado del primer experimento
+
+Se probaron las tres versiones en paralelo sobre el mismo proyecto (Nexo) y el
+mismo brief:
+
+| Versión | Diseño (ciego) | Técnica (ciega) | Veredicto |
+| --- | ---: | ---: | --- |
+| Lean / adversarial | **4,56 / 5** | **90,7 / 100** | Ganadora como base |
+| Contract-first | 4,54 / 5 | 81,5 / 100 | Cerca en diseño, más deuda técnica |
+| Creative-director | 4,26 / 5 | 86,8 / 100 | Mayor divergencia, peor sistema |
+
+La **híbrida** recoge lo mejor de las tres y corrige los fallos concretos que
+detectaron los evaluadores.
 
 ## Instalación rápida
 

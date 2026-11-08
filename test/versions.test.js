@@ -12,13 +12,14 @@ const versions = [
   "design-contract.md",
   "design-director.md",
   "design-lean.md",
+  "design-hybrid.md",
 ];
 
 function readVersion(file) {
   return fs.readFileSync(path.join(VERSIONS_DIR, file), "utf8");
 }
 
-test("existen las tres versiones de experimento", () => {
+test("existen las versiones de experimento", () => {
   for (const file of versions) {
     assert.ok(fs.existsSync(path.join(VERSIONS_DIR, file)), `Falta ${file}`);
   }

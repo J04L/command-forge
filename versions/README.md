@@ -1,16 +1,17 @@
 # Versiones de experimento de `/design`
 
-Estas tres versiones no se instalan con el CLI. Son variantes para probar en paralelo con el mismo proyecto y el mismo brief. La versión estable vive en `../commands/design.md`.
+Estas versiones no se instalan con el CLI. Son variantes para probar en paralelo con el mismo proyecto y el mismo brief. La versión estable vive en `../commands/design.md`.
 
-## Las tres versiones
+## Las versiones
 
 | Versión | Archivo | Enfoque | Qué prioriza | Qué sacrifica |
 | --- | --- | --- | --- | --- |
 | **Contract-first** | `design-contract.md` | Máquina de estados con artefactos, presupuesto, gates y evidencia. | Robustez, auditabilidad, que no se salte la verificación. | Más ceremonia y turnos; puede sentirse burocrática. |
 | **Creative-director** | `design-director.md` | Tesis de dirección de arte, matriz de 13 ejes, crítica y scorecard. | Calidad visual, divergencia real, criterio. | Menos énfasis en manifiestos y checks mecánicos. |
 | **Lean / adversarial** | `design-lean.md` | Prompt corto, reglas duras, vertical slices. | Que un agente perezoso no pueda fingir; rapidez. | Menos profundidad y menos artefactos de auditoría. |
+| **Híbrida** | `design-hybrid.md` | Lean como base + método de Director + contrato de Contract. | Equilibrio entre calidad, verificación y coste. | Aún no probada en un experimento real. |
 
-Las tres comparten:
+Todas comparten:
 
 - A/B/C con el mismo contenido y tokens visuales por variante.
 - Laboratorio aislado que se crea si no existe.
@@ -31,7 +32,7 @@ cp versions/design-contract.md .opencode/commands/design.md
 
 Luego ejecuta `/design <brief>` en OpenCode. Repite en otra copia con `design-director.md` y `design-lean.md`.
 
-No copies las tres en el mismo proyecto: se pisarían `.design-lab/`, servidores y archivos.
+No copies varias en el mismo proyecto: se pisarían `.design-lab/`, servidores y archivos.
 
 ## Protocolo de prueba paralela
 
@@ -45,11 +46,11 @@ Crear un proyecto pequeño y realista, con:
 - un `README.md` con el contexto de marca y las restricciones;
 - toolchain simple (HTML/CSS/JS o Vite) para probar también el aislamiento.
 
-El proyecto debe ser idéntico en las tres copias. Nada de ventajas para una versión.
+El proyecto debe ser idéntico en todas las copias. Nada de ventajas para una versión.
 
 ### 2. Brief único
 
-El mismo texto exacto para las tres. Debe incluir:
+El mismo texto exacto para todas. Debe incluir:
 
 - qué se construye y qué acción principal debe provocar;
 - audiencia y contexto;
@@ -121,7 +122,7 @@ Reglas:
 
 Al terminar:
 
-- tabla comparativa de las tres;
+- tabla comparativa de todas;
 - qué versión ganó y por qué;
 - qué ideas de las otras dos se portan a la versión estable;
 - actualización de `commands/design.md` con la versión ganadora + injertos;
