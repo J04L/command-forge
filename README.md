@@ -3,6 +3,8 @@
 Comandos reutilizables para [OpenCode](https://opencode.ai). Instálalos en
 cualquier proyecto con `npx`, sin copiar y pegar prompts a mano.
 
+Repositorio: <https://github.com/J04L/command-forge>
+
 ## Comandos
 
 | Comando | Qué hace |
