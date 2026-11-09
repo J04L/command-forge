@@ -13,6 +13,7 @@ Repositorio: <https://github.com/J04L/command-forge>
 | Comando | Qué hace |
 | --- | --- |
 | `/design <idea>` | Coordina **3 agentes de diseño en paralelo**: escucha y extiende el contexto, prepara un laboratorio aislado y lanza A/B/C, cada uno con una dirección propia. Después compara y recomienda antes de tocar el proyecto real. |
+| `/forge <idea>` | Coordina **varios agentes especialistas** para extender y poner a prueba una idea. Conversa contigo, decide cuántos agentes necesita y con qué encargo, los lanza en paralelo y vuelve con una conclusión. No tiene equipo fijo ni formato de salida cerrado. |
 
 ## Versiones en experimentación
 
@@ -129,6 +130,29 @@ El comando trabaja siempre dentro de un entorno de pruebas:
 - El coordinador levanta el servidor y pasa la URL a los tres agentes.
 - Solo cuando eliges una dirección, se integra en el proyecto real.
 
+### /forge
+
+```text
+/forge siento que el onboarding tiene demasiados pasos y no sé si el problema es el flujo o que no hemos entendido qué quiere hacer el usuario
+```
+
+`/forge` no tiene un equipo fijo de agentes ni un formato de salida cerrado. El
+coordinador conversa contigo, decide qué preguntas hay que hacer, elige cuántos
+agentes lanzar y con qué encargo, y sintetiza lo que vuelve. Los agentes pueden
+investigar, ejecutar y tocar código en una copia, rama o worktree.
+
+Su flujo:
+
+1. **Conversación.** Entiende la preocupación, extiende el hilo y propone
+   ángulos que no habías considerado. No anuncia el lanzamiento en cada
+   respuesta.
+2. **Reparto.** Decide cuántos agentes necesita, qué mira cada uno y qué formato
+   de vuelta quiere. Si dos harían lo mismo, sobra uno.
+3. **Lanzamiento.** Cuando le des la señal, presenta el plan en pocas líneas y
+   espera confirmación.
+4. **Cierre.** Contrasta, descarta y vuelve con una conclusión en el formato que
+   sirva para decidir. Puede proponer otra ronda o pasar a `/design`.
+
 ## CLI
 
 ```text
@@ -214,6 +238,7 @@ Tienes los detalles, el checklist de publicación y las alternativas en
 .
 ├── bin/cli.js              # instalador npx
 ├── commands/design.md      # comando /design (V2 coordinadora)
+├── commands/forge.md       # comando /forge
 ├── versions/               # variantes históricas del experimento
 ├── docs/                   # distribución y resultados
 ├── test/                   # tests del CLI y de las versiones

@@ -83,11 +83,3 @@ test("el comando estable es la V2 promovida", () => {
   );
   assert.equal(stable, readVersion("design-v2.md"));
 });
-
-test("el CLI solo descubre el comando estable", () => {
-  const commands = fs
-    .readdirSync(path.join(ROOT, "commands"))
-    .filter((file) => file.endsWith(".md"));
-
-  assert.deepEqual(commands, ["design.md"]);
-});

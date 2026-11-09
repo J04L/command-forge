@@ -6,13 +6,14 @@ Colección de comandos reutilizables para harness de agentes como OpenCode. Se
 instalan con `npx` en `.opencode/commands/` (proyecto) o en
 `~/.config/opencode/commands/` (global), sin copiar prompts a mano.
 
-El comando principal es `/design`, pero el proyecto está pensado para crecer con
-más comandos.
+Los comandos principales son `/design` y `/forge`, pero el proyecto está pensado
+para crecer con más comandos.
 
 ## Estado actual
 
 - **Versión:** `0.2.0`.
-- **Comando estable:** `commands/design.md`, la **V2.1 coordinadora**.
+- **Comandos estables:** `commands/design.md` (la **V2.1 coordinadora**) y
+  `commands/forge.md` (investigación con varios agentes).
 - `commands/design.md` y `versions/design-v2.md` deben ser **idénticos**. Si se
   cambia uno, se sincroniza el otro y se ejecutan los tests.
 - **Repo:** <https://github.com/J04L/command-forge>
@@ -28,6 +29,7 @@ más comandos.
 .
 ├── bin/cli.js              # CLI npx, sin dependencias externas
 ├── commands/design.md      # comando estable /design
+├── commands/forge.md       # comando estable /forge
 ├── versions/               # experimentos y versiones históricas
 ├── docs/                   # distribución y resultados
 ├── test/                   # tests del CLI y de las versiones
