@@ -62,22 +62,26 @@ En la raíz del proyecto:
 
 ```bash
 npx command-forge add design
+npx command-forge add forge
 ```
 
-Esto crea `.opencode/commands/design.md`. OpenCode detecta el archivo
-automáticamente y lo expone como `/design`; no hace falta reiniciar.
+Cada uno crea `.opencode/commands/<comando>.md`. OpenCode los detecta
+automáticamente y los expone como `/design` y `/forge`; no hace falta
+reiniciar.
 
-> Este comando funciona cuando el paquete está publicado en npm. Mientras
-> tanto, usa la variante de GitHub que aparece más abajo.
-
-Para tenerlo en todos tus proyectos:
+Para instalar todos los comandos:
 
 ```bash
-npx command-forge add design --global
+npx command-forge add --all
 ```
 
-Si todavía no has publicado el paquete en npm, puedes instalarlo directamente
-desde GitHub:
+Para tenerlos en todos tus proyectos:
+
+```bash
+npx command-forge add --all --global
+```
+
+También puedes instalarlos directamente desde GitHub:
 
 ```bash
 npx github:J04L/command-forge add design

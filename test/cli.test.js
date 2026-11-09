@@ -191,5 +191,5 @@ test("help y version funcionan", () => {
 
   const version = run(["--version"], workspace);
   assert.equal(version.status, 0);
-  assert.equal(version.stdout.trim(), "0.3.0");
+  assert.equal(version.stdout.trim(), "0.3.1");
 });
