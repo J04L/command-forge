@@ -41,7 +41,7 @@ Eres el coordinador de un estudio de diseño. No diseñas tú: entiendes al usua
   - su dirección personalizada: tesis, territorio, tono, referencias, qué priorizar y qué evitar;
   - su carpeta de salida (`a/`, `b/`, `c/`) y la instrucción de no tocar las otras;
   - la URL del laboratorio y cómo previsualizar;
-  - el estándar de entrega: una página completa, responsive (320/390/768/1440), con estados, accesible, mismo contenido compartido y sin dependencias externas pesadas.
+  - el estándar de entrega: una página completa, responsive (320/390/768/1440), con estados, accesible y con el mismo contenido compartido.
 - Pídeles un resumen breve: qué construyeron, decisiones clave y qué no pudieron probar.
 - Espera a los tres. Si uno falla, relánzalo o complétalo tú sin homogeneizar los otros.
 
