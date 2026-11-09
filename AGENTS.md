@@ -11,15 +11,14 @@ para crecer con más comandos.
 
 ## Estado actual
 
-- **Versión:** `0.2.0`.
+- **Versión:** `0.3.0`.
 - **Comandos estables:** `commands/design.md` (la **V2.1 coordinadora**) y
   `commands/forge.md` (investigación con varios agentes).
 - `commands/design.md` y `versions/design-v2.md` deben ser **idénticos**. Si se
   cambia uno, se sincroniza el otro y se ejecutan los tests.
 - **Repo:** <https://github.com/J04L/command-forge>
-- **Release:** `v0.2.0`.
-- **Pendiente:** publicar en npm (`npm publish --access public`) y validar la V2
-  con un segundo brief.
+- **Release:** `v0.3.0`.
+- **Pendiente:** validar `/forge` con un segundo caso.
 - `experiments/` es local, está ignorado por git y contiene los laboratorios de
   Nexo y capturas. No se commitea.
 

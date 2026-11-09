@@ -1,6 +1,6 @@
 {
   "name": "command-forge",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Comandos reutilizables para OpenCode y otros harness de agentes. Instálalos con npx.",
   "type": "module",
   "bin": {
