@@ -349,7 +349,7 @@ function addCommands(names, flags) {
     if (installed === 1 && actions.some((a) => a.status === "created")) {
       const command = actions.find((a) => a.status === "created");
       console.log(
-        `${dim("En OpenCode:")} /${command.name} <brief>`,
+        `${dim("En OpenCode:")} /${command.name} <idea>`,
       );
     }
   } else if (skipped === 0) {
