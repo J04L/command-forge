@@ -5,6 +5,9 @@ cualquier proyecto con `npx`, sin copiar y pegar prompts a mano.
 
 Repositorio: <https://github.com/J04L/command-forge>
 
+> Si eres un agente trabajando en este repositorio, lee [`AGENTS.md`](AGENTS.md)
+> para el propósito, el estado actual y las convenciones.
+
 ## Comandos
 
 | Comando | Qué hace |
