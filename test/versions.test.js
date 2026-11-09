@@ -76,6 +76,14 @@ test("las descripciones de las versiones son distintas", () => {
   assert.equal(new Set(descriptions).size, versions.length);
 });
 
+test("el comando estable es la V2 promovida", () => {
+  const stable = fs.readFileSync(
+    path.join(ROOT, "commands", "design.md"),
+    "utf8",
+  );
+  assert.equal(stable, readVersion("design-v2.md"));
+});
+
 test("el CLI solo descubre el comando estable", () => {
   const commands = fs
     .readdirSync(path.join(ROOT, "commands"))

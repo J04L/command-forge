@@ -9,18 +9,19 @@ Repositorio: <https://github.com/J04L/command-forge>
 
 | Comando | Qué hace |
 | --- | --- |
-| `/design <brief>` | Explora **3 direcciones de diseño web (A/B/C)** para un brief, las construye en un laboratorio aislado, las verifica en el navegador y las compara antes de tocar el proyecto real. |
+| `/design <idea>` | Coordina **3 agentes de diseño en paralelo**: escucha y extiende el contexto, prepara un laboratorio aislado y lanza A/B/C, cada uno con una dirección propia. Después compara y recomienda antes de tocar el proyecto real. |
 
 ## Versiones en experimentación
 
-La versión estable es `commands/design.md`. En `versions/` hay tres variantes para
-probar en paralelo con el mismo proyecto y el mismo brief:
+La versión estable es `commands/design.md`: la **V2 coordinadora**. En `versions/`
+quedan las variantes históricas del experimento:
 
+- `design-v2.md` — **V2 coordinadora (actual)**: escucha, contexto compartido, 3 subagentes en paralelo.
 - `design-contract.md` — contract-first: artefactos, presupuesto, gates y evidencia.
 - `design-director.md` — creative-director: tesis, matriz de ejes, crítica y scorecard.
 - `design-lean.md` — lean/adversarial: prompt corto, guardrails duros y vertical slices.
 - `design-hybrid.md` — híbrida: Lean como base + método de Director + contrato de Contract.
-- `design-final.md` — final: Lean + endurecimiento técnico de la híbrida, sin la matriz que redujo el rango.
+- `design-final.md` — V1 final: Lean + endurecimiento técnico de la híbrida.
 
 No se instalan con el CLI; se copian a `.opencode/commands/design.md` en copias
 aisladas del proyecto. El protocolo completo está en
@@ -45,8 +46,11 @@ En una segunda ronda se comparó la híbrida contra Lean:
 | Lean | **87,5 / 100** | 76 / 100 | Mejor rango, deuda técnica |
 | Híbrida | 84,6 / 100 | **88 / 100** | Mejor técnica, menos rango |
 
-La **final** parte de Lean para conservar el rango y le añade el endurecimiento
-técnico de la híbrida. Está pendiente de probar con otro brief.
+La **V1 final** partió de Lean para conservar el rango y le añadió el
+endurecimiento técnico de la híbrida. La **V2.1** se probó con una sesión real
+de OpenCode: 3 subagentes en paralelo, anti-referencias y contenido compartido
+respetados, 0 errores de consola y 0 recursos externos. Es la versión estable
+actual.
 
 ## Instalación rápida
 
@@ -86,19 +90,20 @@ npx github:J04L/command-forge add design
 
 El comando sigue este flujo:
 
-1. **Encuadra el brief.** Si falta información, hace como máximo 3 preguntas.
-2. **Descubre skills de diseño.** Busca en las rutas de skills de OpenCode,
-   Claude y Agents, detecta las relevantes y las carga con la herramienta
-   `skill`. Si no hay ninguna, lo dice y ofrece instalar una con permiso.
-3. **Prepara un laboratorio aislado.** Crea `.design-lab/runs/<fecha>-<slug>/`
-   si no existe. Nunca modifica la app real durante la exploración.
-4. **Diseña A/B/C.** Tres direcciones que se diferencian en al menos 4 ejes
-   (tipografía, color, densidad, layout, imagen, movimiento...), no tres
-   variaciones de color del mismo diseño.
-5. **Verifica.** Levanta un servidor local, abre las variantes, revisa consola,
-   responsive, accesibilidad y estados, y guarda capturas en `shots/`.
+1. **Escucha y extiende.** Pregunta lo que falte, pero no interroga. Puede mirar
+   el repo, los tokens y páginas existentes, referencias externas y competencia.
+   Extrae las restricciones y anti-referencias de marca.
+2. **Define tres territorios.** A/B/C con tesis, tono y territorio visual
+   distintos. Si dos se parecen, los cambia antes de lanzar.
+3. **Prepara el laboratorio.** Crea `context.md`, `shared/` con el copy y las
+   cifras exactas, `a/`, `b/`, `c/` y el comparador. Levanta un servidor local.
+4. **Lanza 3 subagentes en paralelo.** Cada uno recibe una dirección
+   personalizada, las restricciones de marca y su carpeta. Las tres parten del
+   mismo contenido; lo que cambia es la dirección.
+5. **Revisa y compara.** Comprueba que cargan, que son responsive y que son
+   distintas. Si una usa una anti-referencia o cambia datos, pide corregirla.
 6. **Presenta y decide.** Tabla comparativa, enlaces, recomendación razonada y
-   una pregunta: ¿A, B, C o una mezcla?
+   una pregunta: ¿cuál quieres desarrollar o integrar?
 
 ### El laboratorio
 
@@ -106,36 +111,20 @@ El comando trabaja siempre dentro de un entorno de pruebas:
 
 ```text
 .design-lab/
-├── README.md
-└── runs/2026-11-08-landing-finanzas/
+└── runs/2026-11-09-134437-nexo/
+    ├── context.md            # contexto compartido por los 3 agentes
     ├── index.html            # comparador A/B/C
-    ├── a/index.html
-    ├── b/index.html
-    ├── c/index.html
-    ├── shared/               # tokens, copy y assets compartidos
-    └── shots/                # capturas de verificación
+    ├── a/                    # una dirección por carpeta
+    ├── b/
+    ├── c/
+    └── shared/               # content, tokens y assets compartidos
 ```
 
 - Si el laboratorio ya existe, añade una run nueva; no borra las anteriores.
 - Si el proyecto es un repo git, añade `.design-lab/` a `.git/info/exclude`
   (ignorado local) sin tocar el `.gitignore` del proyecto.
-- El servidor por defecto es `python3 -m http.server 4173 --directory .design-lab`,
-  pero el agente puede usar otro que ya esté disponible.
-- Solo cuando eliges una variante, el agente la integra en el proyecto real.
-
-## Skills de diseño recomendadas
-
-El comando descubre las skills que ya tengas instaladas. Si quieres mejorar el
-punto de partida, puedes instalar alguna de estas:
-
-```bash
-npx skills add anthropics/skills --skill frontend-design
-npx skills add vercel-labs/agent-skills --skill web-design-guidelines
-npx skills add pbakaus/impeccable --skill critique
-npx skills add emilkowalski/skill --skill emil-design-eng
-```
-
-No es obligatorio: `/design` funciona sin skills, pero las aprovecha si existen.
+- El coordinador levanta el servidor y pasa la URL a los tres agentes.
+- Solo cuando eliges una dirección, se integra en el proyecto real.
 
 ## CLI
 
@@ -221,9 +210,10 @@ Tienes los detalles, el checklist de publicación y las alternativas en
 ```text
 .
 ├── bin/cli.js              # instalador npx
-├── commands/design.md      # comando /design
-├── docs/distribucion.md    # cómo publicarlo y distribuirlo
-├── test/cli.test.js        # tests del instalador
+├── commands/design.md      # comando /design (V2 coordinadora)
+├── versions/               # variantes históricas del experimento
+├── docs/                   # distribución y resultados
+├── test/                   # tests del CLI y de las versiones
 ├── package.json
 └── README.md
 ```

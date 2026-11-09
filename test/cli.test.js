@@ -47,7 +47,7 @@ test("list muestra los comandos disponibles", () => {
   assert.equal(result.status, 0);
   assert.match(result.stdout, /Comandos disponibles/);
   assert.match(result.stdout, /design/);
-  assert.match(result.stdout, /Tres direcciones A\/B\/C/);
+  assert.match(result.stdout, /direcciones A\/B\/C/);
 });
 
 test("list --json devuelve datos parseables", () => {
@@ -68,7 +68,7 @@ test("add instala el comando en .opencode/commands", () => {
   assert.equal(result.status, 0);
   const target = projectCommand(workspace);
   assert.ok(fs.existsSync(target));
-  assert.match(fs.readFileSync(target, "utf8"), /\*\*Brief/);
+  assert.match(fs.readFileSync(target, "utf8"), /\*\*Idea inicial:\*\*/);
   assert.match(result.stdout, /1 comando\(s\) instalado\(s\)/);
 });
 
@@ -191,5 +191,5 @@ test("help y version funcionan", () => {
 
   const version = run(["--version"], workspace);
   assert.equal(version.status, 0);
-  assert.equal(version.stdout.trim(), "0.1.0");
+  assert.equal(version.stdout.trim(), "0.2.0");
 });

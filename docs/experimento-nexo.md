@@ -122,8 +122,37 @@ Y se añaden tres reglas de rango que la híbrida no protegió:
   auxiliar; el rail va a 280-320 px, no al revés. Fechas y trimestres deben ser
   coherentes entre secciones.
 
+## Tercera ronda: V2 coordinadora
+
+`design-v2.md` cambia la arquitectura: el agente principal no diseña, coordina.
+
+- Escucha y extiende el contexto; puede mirar el repo, tokens, páginas
+  existentes, referencias externas y competencia.
+- Crea `context.md` solo porque hay tres subagentes que necesitan la misma base.
+- Define tres territorios A/B/C y lanza tres subagentes `general` en paralelo,
+  cada uno con su tesis, tono, restricciones de marca y carpeta (`a/`, `b/`, `c/`).
+- Las tres parten del mismo `shared/` (copy, cifras, tokens, assets).
+- El coordinador revisa, compara y recomienda; no integra sin elección.
+
+Prueba real con el API de OpenCode (comando `/design` expandido, sesión primaria
+`build`):
+
+- 3 subagentes creados con **12 ms de diferencia** y ejecutados en paralelo.
+- Direcciones distintas: **A · Editorial/Ledger**, **B · Taller/Agenda**,
+  **C · Radar/Anticipación**.
+- La V2.1 corrigió los fallos de la primera prueba: radios de 2-8 px, sin
+  `backdrop-filter`, mismas cifras en las tres (4.820 / 18.450 / 2.140 / 14 jul /
+  +12.000 como ejemplo).
+- 0 errores de consola, 0 recursos externos, 0 overflow, 1 `h1` por página y
+  todas las imágenes con `alt`.
+- `git status` limpio: no se tocó la landing real.
+
+**Decisión:** `design-v2.md` se promovió a `commands/design.md` como versión
+estable. `design-final.md` queda como V1 de referencia.
+
 ## Siguiente paso
 
-`design-final.md` se ha promovido a `commands/design.md` como versión estable.
-Queda pendiente validarla con un segundo brief para comprobar que no está
-sobreajustada a Nexo.
+Validar la V2 con un segundo brief para comprobar que no está sobreajustada a
+Nexo. En una sesión de escritorio con navegador, el coordinador también debería
+hacer QA visual y capturas; la prueba por API no tenía navegador y esa parte
+quedó fuera.
