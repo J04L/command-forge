@@ -14,7 +14,10 @@ const versions = [
   "design-lean.md",
   "design-hybrid.md",
   "design-final.md",
+  "design-v2.md",
 ];
+
+const classicVersions = versions.filter((file) => file !== "design-v2.md");
 
 function readVersion(file) {
   return fs.readFileSync(path.join(VERSIONS_DIR, file), "utf8");
@@ -38,8 +41,8 @@ test("cada versión tiene frontmatter, agent: build y $ARGUMENTS", () => {
   }
 });
 
-test("las versiones comparten los invariantes del comando", () => {
-  for (const file of versions) {
+test("las versiones clásicas comparten sus invariantes", () => {
+  for (const file of classicVersions) {
     const text = readVersion(file);
 
     assert.match(text, /\.design-lab/, `${file} sin laboratorio`);
@@ -48,6 +51,20 @@ test("las versiones comparten los invariantes del comando", () => {
     assert.match(text, /integra/i, `${file} sin gate de integración`);
     assert.match(text, /NO VERIFICADO/i, `${file} sin regla de honestidad`);
   }
+});
+
+test("la V2 coordina tres subagentes sin la maquinaria clásica", () => {
+  const text = readVersion("design-v2.md");
+
+  assert.match(text, /\.design-lab/);
+  assert.match(text, /A\/B\/C|tres direcciones/i);
+  assert.match(text, /subagent/);
+  assert.match(text, /context\.md/);
+  assert.match(text, /tres agentes|tres subagentes/i);
+  assert.doesNotMatch(text, /NO VERIFICADO/i);
+  assert.doesNotMatch(text, /skills/i);
+  assert.doesNotMatch(text, /no instales/i);
+  assert.doesNotMatch(text, /plan\.md/i);
 });
 
 test("las descripciones de las versiones son distintas", () => {

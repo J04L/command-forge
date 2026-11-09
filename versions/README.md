@@ -11,6 +11,7 @@ Estas versiones no se instalan con el CLI. Son variantes para probar en paralelo
 | **Lean / adversarial** | `design-lean.md` | Prompt corto, reglas duras, vertical slices. | Que un agente perezoso no pueda fingir; rapidez. | Menos profundidad y menos artefactos de auditoría. |
 | **Híbrida** | `design-hybrid.md` | Lean como base + método de Director + contrato de Contract. | Equilibrio entre calidad, verificación y coste. | Probada: mejor técnica, peor rango que Lean. |
 | **Final** | `design-final.md` | Lean + endurecimiento técnico de la híbrida, sin la matriz que redujo el rango. | Mantener el rango de Lean y arreglar sus P0 técnicos. | Pendiente de probar con un brief real. |
+| **V2 coordinador** | `design-v2.md` | Coordinador que escucha, extiende el contexto y lanza 3 subagentes en paralelo con directrices propias. | Contexto compartido, paralelismo real y menos ceremonia. | Sin plan, skills ni brief rígido; pendiente de probar. |
 
 Todas comparten:
 
